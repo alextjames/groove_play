@@ -12,12 +12,17 @@ playlist = groove_client.playlist(sys.argv[3])
 gp_songs=[]
 
 for song in playlist.songs:
-    gp_query_result = api.search_all_access(song, 1)
+    query = song.name + " " + song.artist.name
+    gp_query_result = api.search_all_access( query, 1)
     try:
         track = gp_query_result['song_hits'][0]['track']
-        print( track['title'], track['artist'] )
+        print( "Adding " + track['title'] + " by " +  track['artist'] )
         gp_songs.append(track['nid'])
+    except IndexError as e:
+        print("Coudn't find " + query);
+        pass
     except:
+        print(e)
         pass
 
 gp_playlist = api.create_playlist(playlist.name)
