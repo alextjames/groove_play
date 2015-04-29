@@ -4,6 +4,7 @@ Simple script that uses the google play API by Simon Weber: https://github.com/s
 Dependant on couple of python libraries instalable via easy_install:
 
 easy_install pygrooveshark
+
 easy_install gmusicapi
 
 Usage:
